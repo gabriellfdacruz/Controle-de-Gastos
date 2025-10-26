@@ -37,41 +37,30 @@ for _ in range(invest):
 
 os.system('clear')
 
-#print("\nEsses sãos os valores das contas fixas: ")
+print("\nEsses sãos os valores das contas fixas: ")
 
-'''for chave, valor in contas_fixas.items():
-    print(f"{chave}: {valor}")'''
+for chave, valor in contas_fixas.items():
+    print(f"{chave}: {valor}")
 v_fix = sum(contas_fixas.values())
 por_fix = ( v_fix / renda) * 100
+print(f'A porcentagem de gastos fixos é {por_fix:.2f}%.')
 
-#print("\nEsses sãos os valores das contas eventuais: ")
+print("\nEsses sãos os valores das contas eventuais: ")
 
-'''for chave, valor in contas_eventuais.items():
-    print(f"{chave}: {valor}")'''
+for chave, valor in contas_eventuais.items():
+    print(f"{chave}: {valor}")
 v_even =  sum(contas_eventuais.values())
 por_even = ( v_even / renda) * 100
+print(f'A porcentagem de gastos eventuais é {por_even:.2f}%.')
 
-#print("\nEsses sãos os valores das contas dos investimentos: ")
+print("\nEsses sãos os valores das contas dos investimentos: ")
 
-'''for chave, valor in investment.items():
-    print(f"{chave}: {valor}")'''
+for chave, valor in investment.items():
+    print(f"{chave}: {valor}")
 v_inv = sum(investment.values())
 p_inv = ( v_inv / renda ) * 100
+print(f'\nA porcentagem de investimentos {p_inv:.2f}%.')
 
 restante = renda - (v_even + v_fix + v_inv)
-
-print (f'seu restante é de {restante:.2f}.')
-
-print('Aqui está o calculo de seus gastos: ')
-print('------------------------------------')
-print('FIXAS   |EVENTUAIS   |INVESTIMENTOS   |')
-for (k1 ,v1), (k2, v2), (k3, v3) in zip(contas_fixas.items(), contas_eventuais.items(), investment.items()):
-    print(f"{k1}: {v1} | {k2}: {v2} | {k3}: {v3}")
-
-print(f'\nA porcentagem de gastos fixos é {por_fix:.2f}%.')
-
-print(f'\nA porcentagem de gastos eventuais é {por_even:.2f}%.')
-
-print(f'\nA porcentagem de investimentos {p_inv:.2f}%.')
 
 print (f'seu restante é de {restante:.2f}.')
