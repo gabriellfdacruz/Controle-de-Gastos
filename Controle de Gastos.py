@@ -1,66 +1,41 @@
 import os 
-os.system('clear')
-
-contas_fixas = {}
-contas_eventuais = {}
-investment = {}
-
-renda = float(input('Insira sua renda total (insira o decimal com ponto sendo exemplo 0.1): '))
-
-os.system('clear')
-
-cont_fix = int(input('Insira a quantidade de contas fixas (valores que não se alteram com tempo): '))
-
-os.system('clear')
-
-for _ in range(cont_fix):
-    n = str(input(f'Digite o nome da {_+1}° conta fixa: '))
-    num = float(input('Digite o valor da conta: '))
-    contas_fixas.update({n : num})
+def limpar_tela():
     os.system('clear')
 
-cont_event = int(input('Insira a quantidade de contas eventuais (valores que podem variar com tempo): '))
+def coletar_conta(tipo):
+    contas = {}
+    qtd = int(input(f'Insira a quantidade de contas {tipo}: '))
+    limpar_tela()
 
-for _ in range(cont_event):
-    v = str(input(f'Digite o nome da {_+1}° conta eventual: '))
-    valor = float(input('Digite o valor da conta: '))
-    contas_eventuais.update({v : valor})
-    os.system('clear')
+    for i in range(qtd):
+        n = str(input(f'Digite o nome da {i+1}ª conta fixa: '))
+        num = float(input('Digite o valor da conta: '))
+        contas_fixas.update({n : num})
+        limpar_tela()
+    return contas
 
-invest = int(input('Insira a quatidades de seus investimentos (pensando como FI, CDB, e etc): '))
+renda = float(input('Digite o valor de sua renda total: '))
+limpar_tela()
 
-for _ in range(invest):
-    i = str(input(f'Insira o nome do {_+1}° investimento: '))
-    inv = float(input('Insira o valor do investimento: '))
-    investment.update({ i : inv })
-    os.system('clear')
+contas_fixas = coletar_conta('fixas')
+contas_eventuais = coletar_conta('eventuais')
+investment = coletar_conta('insvestimentos')
 
-os.system('clear')
 
-print("\nEsses sãos os valores das contas fixas: ")
-
-for chave, valor in contas_fixas.items():
-    print(f"{chave}: {valor}")
 v_fix = sum(contas_fixas.values())
 por_fix = ( v_fix / renda) * 100
-print(f'A porcentagem de gastos fixos é {por_fix:.2f}%.')
 
-print("\nEsses sãos os valores das contas eventuais: ")
-
-for chave, valor in contas_eventuais.items():
-    print(f"{chave}: {valor}")
 v_even =  sum(contas_eventuais.values())
 por_even = ( v_even / renda) * 100
-print(f'A porcentagem de gastos eventuais é {por_even:.2f}%.')
 
-print("\nEsses sãos os valores das contas dos investimentos: ")
-
-for chave, valor in investment.items():
-    print(f"{chave}: {valor}")
 v_inv = sum(investment.values())
 p_inv = ( v_inv / renda ) * 100
-print(f'\nA porcentagem de investimentos {p_inv:.2f}%.')
 
 restante = renda - (v_even + v_fix + v_inv)
 
-print (f'seu restante é de {restante:.2f}.')
+print("\n===== RESUMO FINANCEIRO =====")
+print(f"Gastos Fixos: R$ {v_fix:.2f} ({por_fix:.2f}%)")
+print(f"Gastos Eventuais: R$ {v_even:.2f} ({por_even:.2f}%)")
+print(f"Investimentos: R$ {v_inv:.2f} ({p_inv:.2f}%)")
+print(f"Saldo Restante: R$ {restante:.2f}")
+print("==============================")
